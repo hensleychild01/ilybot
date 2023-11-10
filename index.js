@@ -45,8 +45,8 @@ client.once(Events.ClientReady, (c) => {
     status: "online",
     activities: [
       {
-        name: "with deez nuts",
-        type: ActivityType.Playing,
+        name: "you from your walls",
+        type: ActivityType.Listening,
       },
     ],
   });
