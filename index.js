@@ -42,7 +42,7 @@ client.once(Events.ClientReady, (c) => {
   console.log("Commands loaded");
 
   client.user.setPresence({
-    status: "idle",
+    status: "online",
     activities: [
       {
         name: "with deez nuts",
