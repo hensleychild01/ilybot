@@ -4,8 +4,11 @@ const {
   Events,
   GatewayIntentBits,
   ActivityType,
+  EmbedBuilder,
+  Colors,
 } = require("discord.js");
 const { token } = require("./config.json");
+const fs = require("fs");
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.commands = new Collection();
@@ -59,7 +62,23 @@ client.on(Events.InteractionCreate, async (i) => {
 
   if (!Command) return i.reply({ content: "Outdated command" });
 
-  return Command.execute(i, client);
+  try {
+    Command.execute(i, client);
+  } catch (error) {
+    console.log(`Error executing command ${error}`);
+
+    fs.appendFile("./logs/errors.txt", `${error} ${Date()}\n`, function(err) {});
+
+    i.reply({
+      embeds: [
+        new EmbedBuilder()
+          .setTitle("Error :/")
+          .setColor(Colors.Red)
+          .addFields({ name: "Error executing command", value: `Error has been logged to console` }),
+      ],
+      ephemeral: true,
+    });
+  }
 });
 
 client.login(token);
