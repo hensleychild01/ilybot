@@ -40,6 +40,7 @@ async function loadCommands(client) {
 
 client.once(Events.ClientReady, (c) => {
   console.log(`Ready! Logged in as ${c.user.tag}`);
+  fs.appendFile("./logs/logins.txt", `${Date()}\n`);
 
   loadCommands(c);
   console.log("Commands loaded");
@@ -65,7 +66,7 @@ client.on(Events.InteractionCreate, async (i) => {
   try {
     Command.execute(i, client);
   } catch (error) {
-    console.log(`Error executing command ${error}`);
+    console.log(`Error executing command ${Command}`);
 
     fs.appendFile("./logs/errors.txt", `${error} ${Date()}\n`, function(err) {});
 
