@@ -1,6 +1,12 @@
 const fs = require("node:fs");
 const path = require("node:path");
-const { Client, Collection, Events, GatewayIntentBits } = require("discord.js");
+const {
+  Client,
+  Collection,
+  Events,
+  GatewayIntentBits,
+  ActivityType,
+} = require("discord.js");
 const { token } = require("./config.json");
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -35,6 +41,17 @@ client.once(Events.ClientReady, (c) => {
   console.log(`Ready! Logged in as ${c.user.tag}`);
 
   loadCommands(c);
+  console.log("Commands loaded");
+
+  client.user.setPresence({
+    status: "idle",
+    activities: [
+      {
+        name: "with deez nuts",
+        type: ActivityType.Playing,
+      },
+    ],
+  });
 });
 
 client.on(Events.InteractionCreate, async (i) => {
