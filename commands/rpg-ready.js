@@ -20,7 +20,7 @@ module.exports = {
           .setTitle("Starting rpg commands")
           .setColor(Colors.DarkGrey),
       ],
-      ephemeral: True,
+      ephemeral: true,
     });
   },
 };
