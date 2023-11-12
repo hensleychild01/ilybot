@@ -1,7 +1,7 @@
 {
   "name": "ilybot",
   "version": "1.0.0",
-  "description": "a tester for liltable's Rift ",
+  "description": "a lil rpg game",
   "main": "index.js",
   "scripts": {
     "test": "node ."
@@ -11,6 +11,8 @@
   "dependencies": {
     "@types/glob": "^8.1.0",
     "discord.js": "^14.13.0",
-    "glob": "^4.0.0"
+    "glob": "^4.0.0",
+    "mongoose": "^8.0.0",
+    "mysql": "^2.18.1"
   }
 }

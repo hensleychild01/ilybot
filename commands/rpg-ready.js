@@ -18,6 +18,9 @@ module.exports = {
       embeds: [
         new EmbedBuilder()
           .setTitle("Starting rpg commands")
+          .setFields(
+            {name: "/rpg-sum", value: "Responds with info about the user"},
+          ) 
           .setColor(Colors.DarkGrey),
       ],
       ephemeral: true,
