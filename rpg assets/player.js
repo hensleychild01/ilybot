@@ -18,6 +18,10 @@ class Player {
       breastplate: { material: "wood", defense: 2 },
       boots: { material: "wood", defense: 2 },
     };
+    this.fights = {
+      wins: 0,
+      losses: 0,
+    };
   }
 
   createUser() {}
