@@ -6,6 +6,6 @@ module.exports = class Sword {
   }
 
   levelUp() {
-    this.level += 1;
+    this.level++;
   }
 };
