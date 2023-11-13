@@ -1,6 +1,6 @@
 const { swordStats } = require("./stats");
 
-module.exports = class Sword {
+class Sword {
   constructor() {
     this.level = 1;
     this.damage = swordStats.damage[this.level - 1];
@@ -10,4 +10,6 @@ module.exports = class Sword {
   levelUp() {
     this.level++;
   }
-};
+}
+
+module.exports = { Sword };

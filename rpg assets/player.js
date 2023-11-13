@@ -1,4 +1,7 @@
-module.exports = class Player {
+const { Sword } = require("./sword");
+const { Bow } = require("./bow");
+
+class Player {
   constructor(username, userID) {
     this.username = username;
     this.id = userID;
@@ -18,4 +21,6 @@ module.exports = class Player {
   }
 
   createUser() {}
-};
+}
+
+module.exports = { Player };
