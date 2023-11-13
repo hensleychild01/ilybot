@@ -5,6 +5,7 @@ class Player {
   constructor(username, userID) {
     this.username = username;
     this.id = userID;
+    this.status = "Idle";
     this.level = 1;
     this.xp = 0;
     this.gold = 0;
