@@ -15,36 +15,17 @@ const PlayerStorage = new Schema({
       type: String,
       default: "Idle",
     },
-    Level: {
-      type: Number,
-      default: 1,
-    },
-    XP: {
-      type: Number,
-      default: 0,
-    },
+    Level: { type: Number, default: 1 },
+    XP: { type: Number, default: 0 },
   },
   Inventory: {
     type: Object,
-    Gold: {
-      type: Number,
-      default: 0,
-    },
-    Sword: {
-      type: Object,
-      default: new Sword(),
-    },
-    Bow: {
-      type: Object,
-      default: new Bow(),
-    },
-    Health: {
-      type: Number,
-      default: 50,
-    },
-    Armor: {
-      type: Object,
-      default: {
+    default: {
+      Gold: 0,
+      Sword: new Sword(),
+      Bow: new Bow(),
+      Health: 50,
+      Armor: {
         helm: { material: "wood", defense: 2 },
         breastplate: { material: "wood", defense: 2 },
         boots: { material: "wood", defense: 2 },

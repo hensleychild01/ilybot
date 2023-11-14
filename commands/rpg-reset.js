@@ -1,14 +1,14 @@
 const {
-  Client,
   ChatInputCommandInteraction,
-  Colors,
+  Client,
   EmbedBuilder,
+  Colors,
 } = require("discord.js");
 const { DB } = require("../schemas");
 
 module.exports = {
-  name: "rpg-sum",
-  description: "Load a summary of the user's RPG stats",
+  name: "rpg-reset",
+  description: "Reset your entire RPG account",
 
   /**
    *
@@ -19,24 +19,21 @@ module.exports = {
     const Player = await DB.findOne({ ID: interaction.user.id });
 
     if (Player) {
+      await DB.findOneAndDelete({ ID: Player.ID });
       return interaction.reply({
         embeds: [
           new EmbedBuilder()
-            .setTitle("RPG Summary")
-            .setColor(Colors.Blue)
-            .addFields({ name: "Status", value: Player.Profile.Status }),
+            .setColor(Colors.Green)
+            .setTitle("Account successfully deleted"),
         ],
+        ephemeral: true,
       });
     } else {
       return interaction.reply({
         embeds: [
           new EmbedBuilder()
-            .setTitle("Oops! This account does not exist.")
-            .setColor(Colors.Red)
-            .addFields({
-              name: "You can make an account using /rpg-signup.",
-              value: " guten tag",
-            }),
+            .setTitle("You have no account to delete")
+            .setColor(Colors.Red),
         ],
         ephemeral: true,
       });

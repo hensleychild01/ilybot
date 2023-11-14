@@ -6,7 +6,7 @@ const {
 
 module.exports = {
   name: "majeure",
-  description: "Some MS Word flukes",
+  description: "An MS Word fluke",
   /**
    *
    * @param {ChatInputCommandInteraction} interaction

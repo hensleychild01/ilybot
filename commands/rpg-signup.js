@@ -24,7 +24,8 @@ module.exports = {
    * @param {Client} client
    */
   async execute(interaction, client) {
-    if (DB.findOne({ ID: interaction.user.id })) {
+    const Player = await DB.findOne({ ID: interaction.user.id });
+    if (Player) {
       await interaction.reply({
         embeds: [
           new EmbedBuilder().setColor(Colors.Red).addFields({
@@ -36,7 +37,7 @@ module.exports = {
       });
     } else {
       await DB.create({
-        ID: interaction.client.id,
+        ID: interaction.user.id,
         Profile: {
           Username: interaction.options.getString("user"),
           Status: "Idle",
