@@ -14,7 +14,7 @@ module.exports = {
    * @param {Client} client
    */
   async execute(interaction, client) {
-    return interaction.reply({
+    await interaction.reply({
       embeds: [
         new EmbedBuilder()
           .setTitle("Starting rpg commands")

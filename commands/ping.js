@@ -16,7 +16,7 @@ module.exports = {
   async execute(interaction, client) {
     const now = Date.now();
 
-    return interaction.reply({
+    await interaction.reply({
       embeds: [
         new EmbedBuilder()
           .setTimestamp()

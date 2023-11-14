@@ -35,14 +35,14 @@ module.exports = {
         ephemeral: true,
       });
     } else {
-      DB.create({
+      await DB.create({
         ID: interaction.client.id,
         Profile: {
           Username: interaction.options.getString("user"),
           Status: "Idle",
         },
       });
-      interaction.reply({
+      await interaction.reply({
         embeds: [
           new EmbedBuilder()
             .setColor(Colors.Green)
