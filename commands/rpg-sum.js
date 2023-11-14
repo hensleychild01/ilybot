@@ -28,7 +28,17 @@ module.exports = {
         ],
       });
     } else {
-      await interaction.reply();
+      await interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setTitle("Oops! This account does not exist.")
+            .setColor(Colors.Red)
+            .addFields({
+              name: "You can make an account using /rpg-signup.",
+              value: "",
+            }),
+        ],
+      });
     }
   },
 };
