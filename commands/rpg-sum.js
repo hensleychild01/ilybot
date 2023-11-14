@@ -1,4 +1,10 @@
-const { Client, ChatInputCommandInteraction, Colors, EmbedBuilder } = require("discord.js");
+const {
+  Client,
+  ChatInputCommandInteraction,
+  Colors,
+  EmbedBuilder,
+} = require("discord.js");
+const { DB } = require("../schemas");
 
 module.exports = {
   name: "rpg-sum",
@@ -10,10 +16,19 @@ module.exports = {
    * @param {Client} client
    */
   async execute(interaction, client) {
-    interaction.reply({embeds: [
-        new EmbedBuilder()
-        .setTitle("RPG Summary")
-        .setColor(Colors.Green)
-    ]});
+    const Player = DB.findOne({ ID: interaction.user.id });
+
+    if (Player) {
+      await interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setTitle("RPG Summary")
+            .setColor(Colors.Blue)
+            .addFields({ name: "Status", value: Player.Profile.Status }),
+        ],
+      });
+    } else {
+      await interaction.reply();
+    }
   },
 };

@@ -1,8 +1,13 @@
-const { ChatInputCommandInteraction, Client } = require("discord.js");
+const {
+  ChatInputCommandInteraction,
+  Client,
+  EmbedBuilder,
+  Colors,
+} = require("discord.js");
 
 module.exports = {
   name: "ping",
-  description: "hello there",
+  description: "Hello there",
   /**
    *
    * @param {ChatInputCommandInteraction} interaction
@@ -10,12 +15,16 @@ module.exports = {
    */
   async execute(interaction, client) {
     const now = Date.now();
-    interaction.deferReply({ ephemeral: true }).then(async () => {
-      const latency = Date.now() - now;
 
-      return interaction.editReply({
-        content: `${client.ws.ping}ms | ${latency}ms`,
-      });
+    return interaction.reply({
+      embeds: [
+        new EmbedBuilder()
+          .setTimestamp()
+          .setTitle("Pong!")
+          .addFields({ name: "Latency", value: `${Date.now() - now}ms` })
+          .setColor(Colors.Blue),
+      ],
+      ephemeral: true,
     });
   },
 };

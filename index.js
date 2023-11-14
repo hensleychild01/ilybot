@@ -7,8 +7,8 @@ const {
   EmbedBuilder,
   Colors,
 } = require("discord.js");
-const { token } = require("./config.json");
-const fs = require("fs");
+const { token, database } = require("./config.json");
+const { connect } = require("mongoose");
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.commands = new Collection();
@@ -38,11 +38,13 @@ async function loadCommands(client) {
   );
 }
 
-client.once(Events.ClientReady, (c) => {
+client.once(Events.ClientReady, async (c) => {
   console.log(`Ready! Logged in as ${c.user.tag}`);
 
   loadCommands(c);
   console.log("Commands loaded");
+
+  await connect(database).then(() => console.log(`Connected to database.`));
 
   client.user.setPresence({
     status: "online",
@@ -67,14 +69,12 @@ client.on(Events.InteractionCreate, async (i) => {
   } catch (error) {
     console.log(`Error executing command ${Command}`);
 
-    fs.appendFile("./logs/errors.txt", `${error} ${Date()}\n`);
-
     i.reply({
       embeds: [
-        new EmbedBuilder()
-          .setTitle("Error :/")
-          .setColor(Colors.Red)
-          .addFields({ name: "Error executing command", value: `Error has been logged to console` }),
+        new EmbedBuilder().setTitle("Error :/").setColor(Colors.Red).addFields({
+          name: "Error executing command",
+          value: `Error has been logged to console`,
+        }),
       ],
       ephemeral: true,
     });
